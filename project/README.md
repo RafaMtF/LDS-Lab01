@@ -9,16 +9,22 @@
 * **COMO** aluno, <br>
 * **PRECISO** me matricular em disciplinas, <br>
 * **PARA** cumprir os requisitos do meu curso.
+* **CRITÉRIO DE ACEITE:**
+  * Dentro do período de matrículas, o aluno pode se matricular em 4 disciplinas como 1ª opção (obrigatórias) e em mais 2 outras alternativas (optativas).
 
 ### US03
 * **COMO** aluno, <br>
 * **QUERO** cancelar minha matrícula em disciplinas, <br>
-* **PARA** que eu possa ajustar minha carga horária ou mudar minhas opções de disciplinas. 
+* **PARA** que eu possa ajustar minha carga horária ou mudar minhas opções de disciplinas.
+* **CRITÉRIO DE ACEITE:**
+  * O aluno deve fazer a solicitação dentro do período de matrículas.
 
 ### US04
 * **COMO** secretário(a), <br>
 * **PRECISO** verificar o número de alunos matriculados em cada disciplina após o período de matrículas, <br>
 * **PARA** que possa confirmar se a disciplina será ofertada ou cancelada.
+* **CRITÉRIO DE ACEITE:**
+  * Após o período de matrículas, cada disciplina pode ter no máximo 60 alunos e no mínimo 3.
 
 ### US05
 * **COMO** secretário(a), <br>
@@ -31,15 +37,6 @@
 * **PARA** gerenciar minha sala de aula e preparar o material didático adequado.
 
 ### US07
-* **Como** usuário (aluno, professor ou secretário), <br>
+* **COMO** usuário (aluno, professor ou secretário), <br>
 * **PRECISO** usar minha senha para acessar o sistema, <br>
 * **PARA** realizar as operações de forma segura.
-
-# Regras de negócio 
-
-### RN01
-* Cada aluno pode se matricular em 6 disciplinas, <br>
-sendo 4 obrigatórias como 1ª opção e 2 alternativas (optativas).
-
-### RN02
-* Cada disciplina pode ter no máximo 60 alunos e no mínimo 3.
