@@ -13,5 +13,4 @@ class SistemaMatriculas {
     public void adicionarProfessor(Professor professor) {}
 
     public void processarMatriculas() {}
-    // Métodos de autenticação e outros
 }
