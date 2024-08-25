@@ -1,0 +1,61 @@
+@startuml
+
+class Curso {
+    -String nome
+    -int creditos
+    -List<Disciplina> disciplinas
+    +Curso(String nome, int creditos)
+    +void adicionarDisciplina(Disciplina disciplina)
+    +List<Disciplina> getDisciplinas()
+}
+
+class Disciplina {
+    -String nome
+    -Professor professor
+    -List<Aluno> alunosMatriculados
+    +Disciplina(String nome, Professor professor)
+    +boolean adicionarAluno(Aluno aluno)
+    +void removerAluno(Aluno aluno)
+    +boolean isAtiva()
+    +List<Aluno> getAlunosMatriculados()
+}
+
+class Aluno {
+    -String nome
+    -String matricula
+    -List<Disciplina> disciplinasMatriculadas
+    +Aluno(String nome, String matricula)
+    +void matricularDisciplina(Disciplina disciplina)
+    +void cancelarMatricula(Disciplina disciplina)
+}
+
+class Professor {
+    -String nome
+    -List<Disciplina> disciplinas
+    +Professor(String nome)
+    +void adicionarDisciplina(Disciplina disciplina)
+    +List<Aluno> getAlunosPorDisciplina(Disciplina disciplina)
+}
+
+class SistemaMatriculas {
+    -List<Curso> cursos
+    -List<Aluno> alunos
+    -List<Professor> professores
+    +SistemaMatriculas()
+    +void adicionarCurso(Curso curso)
+    +void adicionarAluno(Aluno aluno)
+    +void adicionarProfessor(Professor professor)
+    +void processarMatriculas()
+}
+
+Curso "1" -- "0..*" Disciplina: contém
+Disciplina "0..*" -- "1" Professor: ministrada por
+Disciplina "0..*" -- "0..*" Aluno: matrícula
+Professor "0..*" -- "1..*" Disciplina: ministra
+Aluno "0..*" -- "0..*" Disciplina: matricula-se em
+
+SistemaMatriculas "1" -- "0..*" Curso: gerencia
+SistemaMatriculas "1" -- "0..*" Aluno: gerencia
+SistemaMatriculas "1" -- "0..*" Professor: gerencia
+
+@enduml
