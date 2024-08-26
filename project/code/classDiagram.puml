@@ -1,23 +1,46 @@
 @startuml
 
 class Curso {
+    -int id
     -String nome
-    -int creditos
+    -String descricao
+    -int creditosParaFormar
     -List<Disciplina> disciplinas
-    +Curso(String nome, int creditos)
+    +Curso(String nome, String descricao, int creditosParaFormar)
     +void adicionarDisciplina(Disciplina disciplina)
     +List<Disciplina> getDisciplinas()
 }
 
-class Disciplina {
-    -String nome
+class Turma {
+    -int id
+    -String turno
+    -String semestreVigente
     -Professor professor
-    -List<Aluno> alunosMatriculados
-    +Disciplina(String nome, Professor professor)
+    -List<Aluno> alunosTurma
+    +Turma(Professor professor, String periodo, String semestreVigente)
     +boolean adicionarAluno(Aluno aluno)
     +void removerAluno(Aluno aluno)
+    +Professor getProfessor()
+    +void alterarProfessor(Professor novoProfessor)
+    +List<Alunos> getAlunos()
+    
+}
+
+class Disciplina {
+    -int id
+    -String nome
+    -String ementa
+    -int creditos
+    -List<Turma> turmas
+    -List<Aluno> alunosMatriculados
+    +Disciplina(String nome, String ementa, int creditos)
+    +boolean adicionarAluno(Aluno aluno)
+    +void removerAluno(Aluno aluno)
+    +boolean adicionarTurma(Turma turma)
+    +void removerTurma(Turma turma)
     +boolean isAtiva()
     +List<Aluno> getAlunosMatriculados()
+    +List<Turma> getTurmas()
 }
 
 class Aluno {
@@ -31,31 +54,38 @@ class Aluno {
 
 class Professor {
     -String nome
+    -int codigoPessoa
     -List<Disciplina> disciplinas
     +Professor(String nome)
     +void adicionarDisciplina(Disciplina disciplina)
     +List<Aluno> getAlunosPorDisciplina(Disciplina disciplina)
 }
 
-class SistemaMatriculas {
+class RegistroAcademico {
     -List<Curso> cursos
     -List<Aluno> alunos
     -List<Professor> professores
-    +SistemaMatriculas()
+    -List<Turma> turmas
+    -List<Disciplina> disciplinas
+    +RegistroAcademico()
     +void adicionarCurso(Curso curso)
     +void adicionarAluno(Aluno aluno)
     +void adicionarProfessor(Professor professor)
+    +void adicionarTurma(Turma turma)
+    +void adicionarDisciplina(Disciplina disciplina)
     +void processarMatriculas()
 }
 
-Curso "1" -- "0..*" Disciplina: contém
-Disciplina "0..*" -- "1" Professor: ministrada por
-Disciplina "0..*" -- "0..*" Aluno: matrícula
-Professor "0..*" -- "1..*" Disciplina: ministra
+Curso "0..*" -- "1..*" Disciplina: contém
+Disciplina "1..*" -- "0..*" Turma contém
+Turma "0..*" -- "1" Professor: ministrada por
 Aluno "0..*" -- "0..*" Disciplina: matricula-se em
 
-SistemaMatriculas "1" -- "0..*" Curso: gerencia
-SistemaMatriculas "1" -- "0..*" Aluno: gerencia
-SistemaMatriculas "1" -- "0..*" Professor: gerencia
+RegistroAcademico "1" -- "0..*" Curso: gerencia
+RegistroAcademico "1" -- "0..*" Aluno: gerencia
+RegistroAcademico "1" -- "0..*" Turma: gerencia
+RegistroAcademico "1" -- "0..*" Professor: gerencia
+RegistroAcademico "1" -- "0..*" Disciplina: gerencia
+
 
 @enduml
