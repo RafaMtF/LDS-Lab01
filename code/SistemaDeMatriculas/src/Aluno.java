@@ -1,4 +1,6 @@
-class Aluno {
+import java.util.List;
+
+public class Aluno {
 
     private String nome;
     private String matricula;
