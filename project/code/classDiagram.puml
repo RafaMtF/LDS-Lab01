@@ -11,18 +11,26 @@ class Curso {
     +List<Disciplina> getDisciplinas()
 }
 
+enum Status {
+  +ATIVA
+  +EM_OFERTA
+  +INATIVA
+  +CONCLUIDA
+}
+
 class Turma {
     -int id
     -String turno
     -String semestreVigente
     -Professor professor
-    -List<Aluno> alunosTurma
+    -Status status
+    -List<Aluno> alunosMatriculados
     +Turma(Professor professor, String periodo, String semestreVigente)
     +boolean adicionarAluno(Aluno aluno)
     +void removerAluno(Aluno aluno)
     +Professor getProfessor()
     +void alterarProfessor(Professor novoProfessor)
-    +List<Alunos> getAlunos()
+    +List<Alunos> getAlunosMatriculados()
     
 }
 
@@ -31,22 +39,16 @@ class Disciplina {
     -String nome
     -String ementa
     -int creditos
-    -List<Turma> turmas
-    -List<Aluno> alunosMatriculados
     +Disciplina(String nome, String ementa, int creditos)
     +boolean adicionarAluno(Aluno aluno)
     +void removerAluno(Aluno aluno)
     +boolean adicionarTurma(Turma turma)
     +void removerTurma(Turma turma)
-    +boolean isAtiva()
-    +List<Aluno> getAlunosMatriculados()
-    +List<Turma> getTurmas()
 }
 
 class Aluno {
     -String nome
     -String matricula
-    -List<Disciplina> disciplinasMatriculadas
     +Aluno(String nome, String matricula)
     +void matricularDisciplina(Disciplina disciplina)
     +void cancelarMatricula(Disciplina disciplina)
@@ -61,31 +63,11 @@ class Professor {
     +List<Aluno> getAlunosPorDisciplina(Disciplina disciplina)
 }
 
-class RegistroAcademico {
-    -List<Curso> cursos
-    -List<Aluno> alunos
-    -List<Professor> professores
-    -List<Turma> turmas
-    -List<Disciplina> disciplinas
-    +RegistroAcademico()
-    +void adicionarCurso(Curso curso)
-    +void adicionarAluno(Aluno aluno)
-    +void adicionarProfessor(Professor professor)
-    +void adicionarTurma(Turma turma)
-    +void adicionarDisciplina(Disciplina disciplina)
-    +void processarMatriculas()
-}
+Aluno "3..60" -- "0..*" Disciplina
+(Aluno, Disciplina) .. Turma
 
-Curso "0..*" -- "1..*" Disciplina: contém
-Disciplina "1..*" -- "0..*" Turma contém
-Turma "0..*" -- "1" Professor: ministrada por
-Aluno "0..*" -- "0..*" Disciplina: matricula-se em
-
-RegistroAcademico "1" -- "0..*" Curso: gerencia
-RegistroAcademico "1" -- "0..*" Aluno: gerencia
-RegistroAcademico "1" -- "0..*" Turma: gerencia
-RegistroAcademico "1" -- "0..*" Professor: gerencia
-RegistroAcademico "1" -- "0..*" Disciplina: gerencia
+Curso "0..*" *-- "1..*" Disciplina
+Turma "0..*" -- "1" Professor
 
 
 @enduml
