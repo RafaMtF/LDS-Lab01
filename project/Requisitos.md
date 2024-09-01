@@ -31,10 +31,12 @@
 * "Verificar alunos em disciplina" *as (verificarAlunosDisciplina)*
 
 ### RF11 
-* "Login" *as (login)*
-
-### RF12 
 * "Cadastrar credenciais" *as (cadastrarCredenciais)*
 
-### RF13 
+### RF12 
 * "Validar senha" *as (validar Senha)*
+
+# Requisitos Não Funcionais
+
+### RNF01 
+* "Login" *as (login)*

@@ -1,0 +1,44 @@
+@startuml useCaseDiagram
+
+:Secretaria: as secretaria
+:Aluno: as aluno
+:Professor: as professor 
+:Sistema Financeiro: as sistemaFinanceiro
+:Usuario: as usuario
+
+"Gerar currículo semestral" as (gerarCurriculo)
+"Persistir aluno" as (persistirAluno)
+"Persistir professor" as (persistirProfessor)
+"Persistir disciplina" as (persistirDisciplina)
+"Matricular em disciplina" as (matricularDisciplina)
+"Cancelar matricula em disciplina" as (cancelarMatricula)
+"Abrir matriculas" as (abrirMatriculas)
+"Encerrar matrículas" as (encerrarMatriculas)
+"Cancelar disciplina" as (cancelarDisciplina)
+"Notificar matrícula de aluno" as (notificarMatricula)
+"Verificar validade da disciplina" as (verificarValidadeDisciplina)
+"Verificar alunos em disciplina" as (verificarAlunosDisciplina) 
+"Cadastrar credenciais" as (cadastrarCredenciais)
+"Recuperar disciplinas de aluno" as (recuperarDisciplinasAluno)
+
+secretaria --> gerarCurriculo
+secretaria --> persistirAluno
+secretaria --> persistirProfessor
+secretaria --> persistirDisciplina
+aluno --> matricularDisciplina
+matricularDisciplina --> notificarMatricula : <<includes>>
+aluno --> cancelarMatricula
+secretaria --> abrirMatriculas
+secretaria --> verificarValidadeDisciplina 
+verificarValidadeDisciplina ..> encerrarMatriculas : <<extends>>
+verificarValidadeDisciplina ..> cancelarDisciplina : <<extends>>
+notificarMatricula --> sistemaFinanceiro
+professor --> verificarAlunosDisciplina
+usuario --> cadastrarCredenciais
+cancelarMatricula --> recuperarDisciplinasAluno : <<includes>>
+
+usuario <|-- secretaria
+usuario <|-- aluno
+usuario <|-- professor
+
+@enduml

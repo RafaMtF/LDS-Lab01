@@ -1,0 +1,73 @@
+@startuml
+
+class Curso {
+    -int id
+    -String nome
+    -String descricao
+    -int creditosParaFormar
+    -List<Disciplina> disciplinas
+    +Curso(String nome, String descricao, int creditosParaFormar)
+    +void adicionarDisciplina(Disciplina disciplina)
+    +List<Disciplina> getDisciplinas()
+}
+
+enum Status {
+  +ATIVA
+  +EM_OFERTA
+  +INATIVA
+  +CONCLUIDA
+}
+
+class Turma {
+    -int id
+    -String turno
+    -String semestreVigente
+    -Professor professor
+    -Status status
+    -List<Aluno> alunosMatriculados
+    +Turma(Professor professor, String periodo, String semestreVigente)
+    +boolean adicionarAluno(Aluno aluno)
+    +void removerAluno(Aluno aluno)
+    +Professor getProfessor()
+    +void alterarProfessor(Professor novoProfessor)
+    +List<Alunos> getAlunosMatriculados()
+    
+}
+
+class Disciplina {
+    -int id
+    -String nome
+    -String ementa
+    -int creditos
+    +Disciplina(String nome, String ementa, int creditos)
+    +boolean adicionarAluno(Aluno aluno)
+    +void removerAluno(Aluno aluno)
+    +boolean adicionarTurma(Turma turma)
+    +void removerTurma(Turma turma)
+}
+
+class Aluno {
+    -String nome
+    -String matricula
+    +Aluno(String nome, String matricula)
+    +void matricularDisciplina(Disciplina disciplina)
+    +void cancelarMatricula(Disciplina disciplina)
+}
+
+class Professor {
+    -String nome
+    -int codigoPessoa
+    -List<Disciplina> disciplinas
+    +Professor(String nome)
+    +void adicionarDisciplina(Disciplina disciplina)
+    +List<Aluno> getAlunosPorDisciplina(Disciplina disciplina)
+}
+
+Aluno "3..60" -- "0..*" Disciplina
+(Aluno, Disciplina) .. Turma
+
+Curso "0..*" *-- "1..*" Disciplina
+Turma "0..*" -- "1" Professor
+
+
+@enduml
