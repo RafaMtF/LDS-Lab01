@@ -1,11 +1,15 @@
 package com.lab.sistema_de_matriculas.model;
 
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,10 +22,14 @@ public class Disciplina {
     private String nome;
     private String ementa;
     private int creditos;
+    private boolean isObrigatoria;
 
     @ManyToOne
-    @JoinColumn(name = "curso_id")
+    @JsonManagedReference
     private Curso curso;
+
+    @OneToMany(mappedBy = "disciplina")
+    private Set<Turma> turmas;
 
     // Getters e setters
     public Long getId() {
@@ -53,5 +61,18 @@ public class Disciplina {
     }
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public boolean isObrigatoria() {
+        return isObrigatoria;
+    }
+
+    public void setObrigatoria(boolean isObrigatoria) {
+        this.isObrigatoria = isObrigatoria;
+    }
+
+    // Metodos
+    void adicionarTurma(Turma turma) {
+        this.turmas.add(turma);
     }
 }
