@@ -18,7 +18,7 @@ public class AlunoService {
         return alunoRepository.findAll();
     }
 
-    public Optional<Aluno> findById(String matriculaDoAluno) {
+    public Optional<Aluno> findById(Long matriculaDoAluno) {
         return alunoRepository.findById(matriculaDoAluno);
     }
 
@@ -26,7 +26,7 @@ public class AlunoService {
         return alunoRepository.save(aluno);
     }
 
-    public void deleteById(String matriculaDoAluno) {
+    public void deleteById(Long matriculaDoAluno) {
         alunoRepository.deleteById(matriculaDoAluno);
     }
 }

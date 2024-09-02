@@ -13,7 +13,7 @@ public class Aluno {
 
     @Id
     @Column(name = "matricula_do_aluno", nullable = false)
-    private String matriculaDoAluno;
+    private Long matriculaDoAluno;
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -22,12 +22,12 @@ public class Aluno {
     @JoinColumn(name = "idCurso", nullable = false)
     private Curso curso;
 
-    public String getMatriculaDoAluno() {
+    public Long getMatriculaDoAluno() {
         return matriculaDoAluno;
     }
 
-    public void setMatriculaDoAluno(String matriculaDoAluno) {
-        this.matriculaDoAluno = matriculaDoAluno;
+    public void setMatriculaDoAluno(Long idAluno) {
+        this.matriculaDoAluno = idAluno;
     }
 
     public String getNome() {
