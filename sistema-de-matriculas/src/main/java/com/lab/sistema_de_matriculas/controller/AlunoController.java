@@ -24,7 +24,7 @@ public class AlunoController {
     }
 
     @GetMapping("/{matriculaDoAluno}")
-    public ResponseEntity<Aluno> getAlunoById(@PathVariable String matriculaDoAluno) {
+    public ResponseEntity<Aluno> getAlunoById(@PathVariable Long matriculaDoAluno) {
         Optional<Aluno> aluno = alunoService.findById(matriculaDoAluno);
         return aluno.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -36,7 +36,7 @@ public class AlunoController {
     }
 
     @PutMapping("/{matriculaDoAluno}")
-    public ResponseEntity<Aluno> updateAluno(@PathVariable String matriculaDoAluno, @RequestBody Aluno aluno) {
+    public ResponseEntity<Aluno> updateAluno(@PathVariable Long matriculaDoAluno, @RequestBody Aluno aluno) {
         if (!alunoService.findById(matriculaDoAluno).isPresent()) {
             return ResponseEntity.notFound().build();
         }
@@ -46,7 +46,7 @@ public class AlunoController {
     }
 
     @DeleteMapping("/{matriculaDoAluno}")
-    public ResponseEntity<Void> deleteAluno(@PathVariable String matriculaDoAluno) {
+    public ResponseEntity<Void> deleteAluno(@PathVariable Long matriculaDoAluno) {
         if (!alunoService.findById(matriculaDoAluno).isPresent()) {
             return ResponseEntity.notFound().build();
         }
