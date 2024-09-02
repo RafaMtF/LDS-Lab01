@@ -13,4 +13,6 @@ public class Curso {
     public void adicionarDisciplina(Disciplina disciplina) {}
 
     public List<Disciplina> getDisciplinas() {}
+
+    public void removerDisciplina(Disciplina disciplina) {}
 }
