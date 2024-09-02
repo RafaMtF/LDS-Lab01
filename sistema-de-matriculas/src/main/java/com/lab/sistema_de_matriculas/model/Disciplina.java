@@ -2,12 +2,12 @@ package com.lab.sistema_de_matriculas.model;
 
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -25,10 +25,10 @@ public class Disciplina {
     private boolean isObrigatoria;
 
     @ManyToOne
-    @JoinColumn(name = "curso_id")
+    @JsonManagedReference
     private Curso curso;
 
-    @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "disciplina")
     private Set<Turma> turmas;
 
     // Getters e setters

@@ -1,29 +1,35 @@
 package com.lab.sistema_de_matriculas.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "professor")
 public class Professor {
     @Id
-    private int codigoPessoa;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idProfessor;
     private String nome;
 
-    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Turma> turmas;
+    @OneToMany(mappedBy = "professor")
+    @JsonManagedReference
+    private Set<Turma> turmas = new HashSet<>();
 
     // Getters e setters
-    public int getCodigoPessoa() {
-        return codigoPessoa;
+    public Long getIdProfessor() {
+        return idProfessor;
     }
 
-    public void setCodigoPessoa(int codigoPessoa) {
-        this.codigoPessoa = codigoPessoa;
+    public void setIdProfessor(Long idProfessor) {
+        this.idProfessor = idProfessor;
     }
 
     public String getNome() {
@@ -34,18 +40,11 @@ public class Professor {
         this.nome = nome;
     }
 
-    // Métodos
-    void adicionarTurma(Turma turma) {
-        this.turmas.add(turma);
+    public Set<Turma> getTurmas() {
+        return turmas;
     }
 
-    List<Aluno> getAlunosPorTurma() {
-        List<Aluno> alunos = new ArrayList<>();
-        
-        for (Turma turma : turmas) {
-            alunos.addAll(turma.getAlunos());
-        }
-    
-        return alunos;
+    public void setTurmas(Set<Turma> turmas) {
+        this.turmas = turmas;
     }
 }

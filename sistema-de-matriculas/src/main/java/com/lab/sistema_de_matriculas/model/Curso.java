@@ -7,6 +7,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "curso")
 public class Curso {
@@ -17,6 +19,7 @@ public class Curso {
     private int creditosPraFormar;
 
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private Set<Disciplina> disciplinas;
 
     // Getters e setters
