@@ -5,6 +5,7 @@ O objetivo do projeto é informatizar o sistema de matrículas de uma universida
 * Guilherme Leroy Teixeira Capanema
 * Rafael Moreira Barbosa Baptista
 * Raquel Inez de Almeida Calazans
+* Matheus Brasil Aguiar
 
 ## Orientadores
 * Cristiano de Macêdo Neto
